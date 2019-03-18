@@ -40,4 +40,8 @@ public class Voto {
 		this.data = data;
 	}
 	
+	public String toString() {
+		return getCorso()+" - "+getVoto()+" // "+getData()+"\n";
+	}
+	
 }
