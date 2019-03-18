@@ -16,8 +16,24 @@ public class Libretto {
 	 * 
 	 * @param v il {@link Voto} da aggiungere
 	 */
-    public void add(Voto v) {
+    public Voto add(Voto v) {
 		voti.add(v);
+		return v;
+	}
+    
+    public Voto add2(Voto v) {
+     	int flag = 1;
+    	
+		for(Voto vv: this.voti) {
+			if (vv.getCorso().compareTo(v.getCorso())==0) flag=0;
+		}
+		
+		if (flag==1) {
+    	voti.add(v);
+    	return v;
+		}
+		
+		return null;
 	}
     
     public String print() {
@@ -44,7 +60,20 @@ public class Libretto {
     		if (v.getCorso().compareTo(nomeCorso)==0) return v.getVoto();
     	}	
     	return 0;
-    	
+    }
+    
+    public boolean esiste(Voto vv) {
+    	for (Voto v : voti) {
+    		if (v.getCorso().compareTo(vv.getCorso())==0 && v.getVoto()==vv.getVoto()) return true;
+    	}
+    	return false;
+    }
+    
+    public boolean conflitto(Voto vv) {
+    	for (Voto v : voti) {
+    		if (v.getCorso().compareTo(vv.getCorso())==0 && v.getVoto()!=vv.getVoto()) return true;
+    	}
+    	return false;
     }
 	
 	
