@@ -48,8 +48,8 @@ public class Libretto {
     public String print(int voto) {
     	String s="";
     	for (Voto v : this.voti) {
-    		if (v.getVoto()==voto)
-    		s=s+v.toString();
+    		     if (v.getVoto()==voto)
+    		     s=s+v.toString();
     	}
     	if (s.length()>1) s=s.substring(0, s.length()-1);
 		return s; 	
@@ -75,6 +75,59 @@ public class Libretto {
     	}
     	return false;
     }
-	
-	
+    
+    public Libretto migliora() {
+    	Libretto libretto = new Libretto();
+    	for (Voto v : this.voti) {	
+    		if (v!=null) {
+    		if (v.getVoto()<24) libretto.voti.add(new Voto(v.getVoto()+1,v.getCorso(),v.getData()));
+    		if (v.getVoto()>=24 && v.getVoto()<=28) libretto.voti.add(new Voto(v.getVoto()+2,v.getCorso(),v.getData()));
+    		if (v.getVoto()==29 || v.getVoto()==30) libretto.voti.add(new Voto(30,v.getCorso(),v.getData()));
+    		}
+    	}
+    	return libretto;
+    }
+    
+    public String printPerNomeCorso() { 	
+    	String s="";
+    	ArrayList<Voto> votii = (ArrayList<Voto>) this.voti;
+    	Collections.sort(votii, new ComparatoreNomeCorso());
+    	for (Voto v : votii) {
+    		     s=s+v.toString();
+    	}
+    	if (s.length()>1) s=s.substring(0, s.length()-1);
+		return s; 	
+    }
+    
+    public String printPerValutazione() { 	
+    	String s="";
+    	ArrayList<Voto> votii = (ArrayList<Voto>) this.voti;
+    	Collections.sort(votii, new ComparatorePerVoto());
+    	for (Voto v : votii) {
+    		     s=s+v.toString();
+    	}
+    	if (s.length()>1) s=s.substring(0, s.length()-1);
+		return s; 	
+    }
+    
+    public void rimuoviVoti(int voto) {
+    	
+    	ArrayList<Voto> lista = null;
+    	lista = (ArrayList<Voto>)this.voti;
+    	
+    	try {
+    	
+    	for (Voto v : lista) {
+    		if (v.getVoto()<voto) {
+    			
+    			if (this.voti.contains(v)) 
+    				this.voti.remove(v);
+    		}
+    	}
+    	
+    	}catch (ConcurrentModificationException cme) {
+    		System.err.println("Problema");
+    	}
+    }
+    	
 }

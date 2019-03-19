@@ -47,7 +47,7 @@ public class TestLibretto {
     */
     
     //ES. PUNTO 6
-    l.add2(new Voto(18,"Fisica I", LocalDate.of(2019, 06, 24)));
+    l.add2(new Voto(19,"Fisica I", LocalDate.of(2019, 06, 24)));
     l.add2(new Voto(18,"Informatica", LocalDate.of(2016, 02, 02)));
     l.add2(new Voto(24,"Statistica", LocalDate.of(2017, 07, 25)));
     l.add2(new Voto(25,"Diritto", LocalDate.of(2018, 06, 24)));
@@ -59,9 +59,26 @@ public class TestLibretto {
     l.add2(new Voto(25,"Base di Dati", LocalDate.of(2019, 06, 25)));
     l.add2(new Voto(25,"Chimica", LocalDate.of(2019, 07, 25)));
     l.add2(new Voto(25,"Base di Dati", LocalDate.of(2019, 06, 25)));
+    
     System.out.println("\nLISTA VOTI: (NON devono esserci duplicati)");
     System.out.println(l.print());
     
     //ES. PUNTO 7
-	}	
+    Libretto l2 = l.migliora();
+    System.out.println("\nLISTA VOTI MIGLIORATI:");
+    System.out.println(l2.print());
+	
+	
+	//ES. PUNTO 8
+	System.out.println("\nLISTA VOTI: (Ordinati per Nome del Corso)");
+    System.out.println(l.printPerNomeCorso());
+    //
+    System.out.println("\nLISTA VOTI: (Ordinati per Valutazioni DECRESCENTI)");
+    System.out.println(l.printPerValutazione());
+    
+    //ES. PUNTO 9
+    System.out.println("\nLISTA VOTI: (Dopo aver eliminato gli inferiori a 24)");
+    l.rimuoviVoti(25); //rimuovo voto < 24
+    System.out.println(l.print());
+	}
 }
