@@ -78,7 +78,7 @@ public class TestLibretto {
     
     //ES. PUNTO 9
     System.out.println("\nLISTA VOTI: (Dopo aver eliminato gli inferiori a 24)");
-    l.rimuoviVoti(25); //rimuovo voto < 24
+    l.rimuoviVoti(24); //rimuovo voto < 24
     System.out.println(l.print());
 	}
 }

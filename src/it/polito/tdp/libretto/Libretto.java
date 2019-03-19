@@ -112,22 +112,13 @@ public class Libretto {
     
     public void rimuoviVoti(int voto) {
     	
-    	ArrayList<Voto> lista = null;
-    	lista = (ArrayList<Voto>)this.voti;
+    	ArrayList<Voto> lista = new ArrayList<Voto>();
     	
-    	try {
-    	
-    	for (Voto v : lista) {
-    		if (v.getVoto()<voto) {
-    			
-    			if (this.voti.contains(v)) 
-    				this.voti.remove(v);
-    		}
+    	for (Voto v : this.voti) {
+    		if (v.getVoto()<voto) lista.add(v);
     	}
-    	
-    	}catch (ConcurrentModificationException cme) {
-    		System.err.println("Problema");
-    	}
-    }
-    	
+ 
+    	this.voti.removeAll(lista);
+
+    }	
 }
